@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/CeraPro-Regular.woff2") format("woff2"),
+    url("/fonts/CeraPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/CeraPro-Bold.woff2") format("woff2"),
+    url("/fonts/CeraPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/CeraPro-Black.woff2") format("woff2"),
+    url("/fonts/CeraPro-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+:root {
+  --primary: #46a358;
+}
+
+body {
+  font-family: "Cera Pro", sans-serif;
+}
+
+.container {
+  max-width: 1240px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.swiper-pagination-bullet {
+  background-color: var(--primary) !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--primary) !important;
+  opacity: 1;
+}
