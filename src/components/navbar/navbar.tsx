@@ -6,7 +6,7 @@ import { NavbarBtn } from "./navbar-btn";
 const Navbar = () => {
   const [onClick, setOnClick] = useState(false);
   const navbar = ["Home", "Shop", "Plant Care", "Blogs"];
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
   return (
     <div className="flex items-center gap-[50px] ">
       {navbar.map((item, index) => (

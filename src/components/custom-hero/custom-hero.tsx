@@ -1,4 +1,5 @@
 import Img from "../../../public/svg/hero-img.png";
+import { Button } from "../ui/button";
 const CustomHero = () => {
   return (
     <div className="flex justify-between">
@@ -15,9 +16,12 @@ const CustomHero = () => {
           plants. Use our plants to create an unique Urban Jungle. Order your
           favorite plants!
         </p>
-        <button className="px-[27px] py-[11px] bg-[var(--primary)] mt-[44px] rounded-[6px] font-bold text-[16px] leading-[125%] uppercase text-[#fff]">
+        <Button
+          variant='primary'
+          className="font-bold leading-[125%] text-[16px] uppercase mt-[44px] "
+        >
           SHOP NOW
-        </button>
+        </Button>
       </div>
       <div className="w-[518px] h-[470px] relative">
         <img
