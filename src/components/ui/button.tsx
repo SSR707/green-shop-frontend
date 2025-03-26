@@ -1,5 +1,5 @@
 import clsx from "clsx";
-type ButtonVariant = "primary" | "utility";
+type ButtonVariant = "primary" | "utility" | "join";
 
 export const Button = ({
   children,
@@ -26,6 +26,8 @@ export const Button = ({
             variant === "primary",
           "px-[17px] py-[8px] bg-[var(--primary)] text-[#fff] gap-[4px]":
             variant === "utility",
+          "px-[25px] py-[12px] bg-[var(--primary)] text-[#fff] gap-[4px] rounded-tl-none rounded-tr-[6px] rounded-br-[6px] rounded-bl-none":
+            variant === "join",
         },
         className
       )}

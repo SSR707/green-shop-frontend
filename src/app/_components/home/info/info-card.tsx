@@ -3,7 +3,7 @@ import InfoImg from "../../../../../public/svg/ingo.svg";
 import NextIcon from "../../../../../public/svg/next-icon-btn.svg";
 export const InfoCard = () => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center ">
       <div className="w-[292px] h-[292px]">
         <img className="w-full h-full object-cover" src={InfoImg.src} alt="" />
       </div>
