@@ -8,6 +8,7 @@ export const Button = ({
   variant,
   type = "button",
   className,
+  onClick,
   ...props
 }: {
   children?: any;
@@ -16,9 +17,11 @@ export const Button = ({
   variant: ButtonVariant;
   type?: string;
   className?: string;
+  onClick?: () => void;
 }) => {
   return (
     <button
+      onClick={onClick}
       className={clsx(
         "flex items-center justify-center rounded-[6px]  font-mediu  cursor-pointer",
         {

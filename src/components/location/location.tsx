@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -30,15 +31,16 @@ export const Location = () => {
   return (
     <div className="flex gap-1 pt-9">
       {path.map((item, index) => (
-        <p
-          key={index}
-          className={`text-[15px] leading-[107%] text-[#3d3d3d] ${
-            item === "Home" ? "font-bold" : "font-normal"
-          }`}
-        >
-          {item}
-          {index !== path.length - 1 ? " /" : null}
-        </p>
+        <Link key={index} href={item === "Home" ? "/" : `/${item}`}>
+          <p
+            className={`text-[15px] leading-[107%] text-[#3d3d3d] ${
+              item === "Home" ? "font-bold" : "font-normal"
+            }`}
+          >
+            {item}
+            {index !== path.length - 1 ? " /" : null}
+          </p>
+        </Link>
       ))}
     </div>
   );

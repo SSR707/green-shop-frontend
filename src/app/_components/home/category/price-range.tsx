@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { Range } from "react-range";
+import { IQuery } from "../products/products";
 
-const PriceRange = () => {
+const PriceRange = ({ filterFn }: { filterFn: (query: IQuery) => void }) => {
   const [values, setValues] = useState([100, 1500]);
 
   return (

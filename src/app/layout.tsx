@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import QueryClientProviderComponent from "@/providers/QueryClientProvider ";
+import ReduxProvider from "@/providers/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,20 +27,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <QueryClientProviderComponent>
-          <div className="min-h-screen , flex flex-col justify-between">
-            <div>
-              <Header />
-              {children}
+    <ReduxProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <QueryClientProviderComponent>
+            <div className="min-h-screen , flex flex-col justify-between">
+              <div>
+                <Header />
+                {children}
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </QueryClientProviderComponent>
-      </body>
-    </html>
+          </QueryClientProviderComponent>
+        </body>
+      </html>
+    </ReduxProvider>
   );
 }

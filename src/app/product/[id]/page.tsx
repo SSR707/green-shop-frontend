@@ -66,6 +66,7 @@ const Product = ({ params }: PageProps) => {
                 planters come with a wooden stand to help elevate your plants
                 off the ground.
               </p>
+              <p className="font-semibold text-[15px] text-[#3d3d3d]">Size</p>
             </div>
           </div>
         </div>

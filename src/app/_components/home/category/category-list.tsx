@@ -1,3 +1,5 @@
+import { IQuery } from "../products/products";
+
 export const CategoryList = ({
   text,
   count,
