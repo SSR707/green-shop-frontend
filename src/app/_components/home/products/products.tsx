@@ -33,7 +33,7 @@ export const Products = () => {
       query: { ...prev?.query, ...filter },
     }));
   };
-  const { data } = getProducts(filter ?? { page: 1, limit: 9, query: {} });
+  const { data } = getProducts(filter ?? { page: 1, limit: 9, query: {minPrice: 100} });
   return (
     <>
       <Fillter filterFn={(filter: IQuery) => filterFn(filter)} />
