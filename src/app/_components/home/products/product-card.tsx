@@ -2,6 +2,7 @@ import ProductImg from "../../../../../public/svg/product-img.svg";
 import LikeIcon from "../../../../../public/svg/like.icon.svg";
 import SearchIcon from "../../../../../public/svg/header-search.svg";
 import CartIcon from "../../../../../public/svg/header-cart.svg";
+import Link from "next/link";
 interface IProductCard {
   id: string;
   img: string;
@@ -37,22 +38,26 @@ export const ProductCard = ({
           <img className="w-[20px] h-[20px]" src={SearchIcon.src} alt="" />
         </div>
       </div>
-      <p className="mt-[12px] font-normal text-[16px] leading-[100%] text-[#3d3d3d]">
-        {title}
-      </p>
-      <div className="flex mt-1.5 items-center gap-[17px]">
-        {" "}
-        <p className="font-bold text-[18px] leading-[89%] text-[var(--primary)]">
-          ${numericPrice.toFixed(2)}
+      <Link href={`/product/${id}`} className=" cursor-pointer">
+        <p className="mt-[12px] font-normal text-[16px] leading-[100%] text-[#3d3d3d]">
+          {title}
         </p>
-        {numericDiscount && numericPrice ? (
-          <p className="font-normal text-[18px] leading-[100%] text-[#a5a5a5] line-through">
-            {" "}
-            $
-            {(numericPrice - (numericPrice * numericDiscount) / 100).toFixed(2)}
+        <div className="flex mt-1.5 items-center gap-[17px]">
+          {" "}
+          <p className="font-bold text-[18px] leading-[89%] text-[var(--primary)]">
+            ${numericPrice.toFixed(2)}
           </p>
-        ) : null}
-      </div>
+          {numericDiscount && numericPrice ? (
+            <p className="font-normal text-[18px] leading-[100%] text-[#a5a5a5] line-through">
+              {" "}
+              $
+              {(numericPrice - (numericPrice * numericDiscount) / 100).toFixed(
+                2
+              )}
+            </p>
+          ) : null}
+        </div>
+      </Link>
     </div>
   );
 };
