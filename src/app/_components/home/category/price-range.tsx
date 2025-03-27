@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Range } from "react-range";
-import { IQuery } from "../products/products";
 
-const PriceRange = ({ filterFn }: { filterFn: (query: IQuery) => void }) => {
+const PriceRange = ({ rangeFn }: { rangeFn: (range: number[]) => void }) => {
   const [values, setValues] = useState([100, 1500]);
 
   return (
@@ -13,7 +12,9 @@ const PriceRange = ({ filterFn }: { filterFn: (query: IQuery) => void }) => {
         min={20}
         max={2000}
         values={values}
-        onChange={(newValues) => setValues(newValues)}
+        onChange={(newValues) => {
+          rangeFn(newValues), setValues(newValues);
+        }}
         renderTrack={({ props, children }) => (
           <div
             {...props}

@@ -40,7 +40,9 @@ body {
   padding-right: 20px;
   padding-left: 20px;
 }
-
+.custom-swiper .swiper-pagination {
+  bottom: 0px !important;
+}
 .swiper-pagination-bullet {
   background-color: var(--primary) !important;
   opacity: 0.5;

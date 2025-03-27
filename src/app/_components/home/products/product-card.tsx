@@ -45,15 +45,13 @@ export const ProductCard = ({
         <div className="flex mt-1.5 items-center gap-[17px]">
           {" "}
           <p className="font-bold text-[18px] leading-[89%] text-[var(--primary)]">
-            ${numericPrice.toFixed(2)}
+            $
+            {numericDiscount ? (numericPrice - (numericPrice * numericDiscount) / 100).toFixed(2) : numericPrice}
           </p>
           {numericDiscount && numericPrice ? (
             <p className="font-normal text-[18px] leading-[100%] text-[#a5a5a5] line-through">
               {" "}
-              $
-              {(numericPrice - (numericPrice * numericDiscount) / 100).toFixed(
-                2
-              )}
+              ${numericPrice.toFixed(2)}
             </p>
           ) : null}
         </div>

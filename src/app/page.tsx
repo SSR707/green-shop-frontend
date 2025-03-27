@@ -12,7 +12,7 @@ export default function Home() {
             <Swipper />
           </div>
         </section>
-        <section className="py-[30px] flex gap-[50px]">
+        <section className="py-[30px] ">
           <ProductWrappers />
         </section>
         <section className="pt-[94px]">

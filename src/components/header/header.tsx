@@ -4,6 +4,7 @@ import HeaderExit from "../../../public/svg/header-exit.svg";
 import HeaderCart from "../../../public/svg/header-cart.svg";
 import Navbar from "../navbar/navbar";
 import { Button } from "../ui/button";
+import { HeaderCartWrapper } from "./header-cart-wrapper";
 
 const Header = () => {
   return (
@@ -18,9 +19,7 @@ const Header = () => {
             <button>
               <img src={HeaderSearch.src} alt="" />
             </button>
-            <div>
-              <img src={HeaderCart.src} alt="" />
-            </div>
+            <HeaderCartWrapper />
             <Button
               variant="utility"
               startIcon={HeaderExit.src}
