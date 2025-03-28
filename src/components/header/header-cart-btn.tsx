@@ -8,7 +8,7 @@ const HeaderCartBtn = () => {
     (state: RootState) => state.product.productCount
   );
   return (
-    <button className=" relative">
+    <button className=" relative cursor-pointer">
       <img src={HeaderCart.src} alt="" />
       {productCount ? (
         <div className=" absolute top-[-2px] right-[-6px] px-[5px] bg-[var(--primary)] rounded-[100%] text-[10px] font-medium text-[#fff]">

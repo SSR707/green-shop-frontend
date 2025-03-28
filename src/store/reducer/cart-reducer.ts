@@ -64,7 +64,8 @@ const CartReducer = createSlice({
     deleteProductCart: (state, action: PayloadAction<{ id: string }>) => {
       return {
         ...state,
-        productCount: state.productCount + 1,
+        productCount:
+          state.productCount > 0 ? state.productCount - 1 : state.productCount,
         products: state.products.filter(
           (item) => item.id !== action.payload.id
         ),

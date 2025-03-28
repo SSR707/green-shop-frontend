@@ -4,24 +4,35 @@ import SearchIcon from "../../../../public/svg/header-search.svg";
 import RatingImg from "../../../../public/svg/reating.svg";
 import { Button } from "@/components/ui/button";
 import GreenLikeImg from "../../../../public/svg/green-like.svg";
+import KarzinaIcon from "../../../../public/svg/karzinka.svg";
 import LoadingSpinner from "@/components/loading/loading";
 import { ReletedProduct } from "@/app/_components/product-diteil/swipper/swipper";
-import { getProducts, ProductResponse } from "@/service/query/getProducts";
+import { getProducts} from "@/service/query/getProducts";
 import { getProductsById } from "@/service/query/getProductsById";
 import { useParams } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { SizeBtn } from "@/app/_components/product-diteil/btn/size-btn";
-import { addToProductCart } from "@/store/reducer/cart-reducer";
+import {
+  addToProductCart,
+  deleteProductCart,
+} from "@/store/reducer/cart-reducer";
+import { RootState } from "@/store/store";
 
 const size = ["S", "M", "L", "XL"];
 const Product = () => {
   const { id }: { id: string } = useParams();
+  const CartProduct = useSelector((state: RootState) => state.product.products);
+  const [isChekProduct, setIsChekProduct] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { data: product } = getProductsById(id);
   const { data: products } = getProducts({ page: 1, limit: 15 });
   const [sizeActiveSize, setSizeActiveSize] = useState<string | null>(null);
   const [counter, setCounter] = useState(1);
+  useEffect(() => {
+    const product = CartProduct.find((item) => item.id === id);
+    setIsChekProduct(product ? true : false);
+  }, [id, CartProduct]);
 
   const AddToCart = () => {
     if (product?.data) {
@@ -138,13 +149,23 @@ const Product = () => {
                       >
                         Buy NOW
                       </Button>
-                      <Button
-                        onClick={AddToCart}
-                        variant="transparent"
-                        className="font-bold uppercase  leading-[143%]"
-                      >
-                        Add to cart
-                      </Button>
+                      {isChekProduct ? (
+                        <Button
+                          onClick={() => dispatch(deleteProductCart({ id }))}
+                          className="font-bold uppercase  leading-[143%] "
+                          variant="danger"
+                        >
+                          Delete cart
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={AddToCart}
+                          variant="transparent"
+                          className="font-bold uppercase  leading-[143%]"
+                        >
+                          Add to cart
+                        </Button>
+                      )}
                       <Button
                         startIcon={GreenLikeImg.src}
                         variant="transparent"

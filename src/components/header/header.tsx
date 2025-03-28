@@ -5,6 +5,7 @@ import HeaderCart from "../../../public/svg/header-cart.svg";
 import Navbar from "../navbar/navbar";
 import { Button } from "../ui/button";
 import { HeaderCartWrapper } from "./header-cart-wrapper";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -19,7 +20,9 @@ const Header = () => {
             <button>
               <img src={HeaderSearch.src} alt="" />
             </button>
-            <HeaderCartWrapper />
+            <Link href={"/cart"}>
+              <HeaderCartWrapper />
+            </Link>
             <Button
               variant="utility"
               startIcon={HeaderExit.src}

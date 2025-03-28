@@ -16,7 +16,7 @@ export const Location = () => {
       .filter(
         (segment, index, arr) =>
           index !== arr.length - 1 || isNaN(Number(segment))
-      ) // ID ni olib tashlash
+      )
       .map((segment, index) =>
         index === 0
           ? segment.charAt(0).toUpperCase() + segment.slice(1)
@@ -31,7 +31,7 @@ export const Location = () => {
   return (
     <div className="flex gap-1 pt-9">
       {path.map((item, index) => (
-        <Link key={index} href={item === "Home" ? "/" : `/${item}`}>
+        <Link key={index} href={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
           <p
             className={`text-[15px] leading-[107%] text-[#3d3d3d] ${
               item === "Home" ? "font-bold" : "font-normal"
