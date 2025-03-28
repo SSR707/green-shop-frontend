@@ -7,7 +7,7 @@ import GreenLikeImg from "../../../../public/svg/green-like.svg";
 import KarzinaIcon from "../../../../public/svg/karzinka.svg";
 import LoadingSpinner from "@/components/loading/loading";
 import { ReletedProduct } from "@/app/_components/product-diteil/swipper/swipper";
-import { getProducts} from "@/service/query/getProducts";
+import { getProducts } from "@/service/query/getProducts";
 import { getProductsById } from "@/service/query/getProductsById";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +28,8 @@ const Product = () => {
   const { data: product } = getProductsById(id);
   const { data: products } = getProducts({ page: 1, limit: 15 });
   const [sizeActiveSize, setSizeActiveSize] = useState<string | null>(null);
+  const [chekProductSize, setChekProductSize] = useState(false);
+  const [chekProductCount, setChekProductCount] = useState(false);
   const [counter, setCounter] = useState(1);
   useEffect(() => {
     const product = CartProduct.find((item) => item.id === id);
@@ -46,6 +48,11 @@ const Product = () => {
             userPrice: parseFloat(product.data.price) * counter,
           })
         );
+      } else {
+        setChekProductCount(counter <= 0 ? true : false);
+        setChekProductSize(!sizeActiveSize ? true : false);
+        setTimeout(() => setChekProductSize(false), 3000);
+        setTimeout(() => setChekProductCount(false), 3000);
       }
     }
   };
@@ -109,8 +116,13 @@ const Product = () => {
                   <p className="font-normal text-[14px] text-[#727272] mt-[10px]">
                     {product?.data?.summary}
                   </p>
-                  <p className="font-semibold text-[16px] text-[#3d3d3d] mt-[24px] mb-[11px]">
-                    Size
+                  <p className="font-semibold text-[16px] text-[#3d3d3d] mt-[24px] mb-[11px] flex">
+                    Size{" "}
+                    {chekProductSize ? (
+                      <span className="text-red-500 font-normal">
+                        : Plese enter product size!
+                      </span>
+                    ) : null}
                   </p>
                   <div className="flex gap-[10px]">
                     {size.map((item, index) => (
@@ -172,6 +184,11 @@ const Product = () => {
                       />
                     </div>
                   </div>
+                  {chekProductCount ? (
+                    <p className="text-red-500 font-normal mt-2">
+                      Please enter a product count greater than 0!
+                    </p>
+                  ) : null}
                   <div className="mt-[26px]">
                     <p className="font-normal text-[15px] text-[#a5a5a5] leading-[107%] ">
                       SKU: <span className="text-[#727272]">1995751877966</span>

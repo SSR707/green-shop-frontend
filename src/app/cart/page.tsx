@@ -15,15 +15,15 @@ const Cart = () => {
         <Location />
         <div className="pt-[50px] pb-[87px] flex justify-between ">
           <div className="w-[63%]">
-            <div className="flex justify-between pb-[11px] border-b border-[#A2D0AB]">
+            <div className="flex gap-[230px] pb-[11px] border-b border-[#A2D0AB]">
               <h3 className="font-semibold text-[16px] leading-[100%] text-[#3d3d3d]">
                 Products
               </h3>
-              <div className="flex gap-[100px] mr-[110px]">
+              <div className="flex gap-[90px] mr-[100px]">
                 <h3 className="font-semibold text-[16px] leading-[100%] text-[#3d3d3d]">
                   Price
                 </h3>
-                <div className="flex items-center gap-[85px]">
+                <div className="flex items-center gap-[90px]">
                   <h3 className="font-semibold text-[16px] leading-[100%] text-[#3d3d3d]">
                     Quantity
                   </h3>

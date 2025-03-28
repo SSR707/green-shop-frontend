@@ -1,5 +1,4 @@
 "use client";
-import ProductImg from "../../../../public/svg/product-img.svg";
 import KarzinkaIcon from "../../../../public/svg/karzinka.svg";
 import { useDispatch } from "react-redux";
 import { deleteProductCart, toggalAmount } from "@/store/reducer/cart-reducer";
@@ -23,6 +22,7 @@ export const CartCard = ({
   const dispatch = useDispatch();
   const numericPrice = Number(price) || 0;
   const numericDiscount = Number(discount) || 0;
+  useEffect(() => {}, []);
   useEffect(() => {
     if (count <= 0) {
       dispatch(deleteProductCart({ id }));
@@ -31,7 +31,6 @@ export const CartCard = ({
   return (
     <div className="mt-[11px] flex bg-[#fbfbfb] items-center gap-[65px]">
       <div className="flex gap-[14px] items-center">
-        {" "}
         <div className="w-[70px] h-[70px]">
           <img className="w-full h-full object-cover" src={img} alt="" />
         </div>
@@ -54,9 +53,9 @@ export const CartCard = ({
         <div className="flex gap-[12px] items-center">
           <button
             onClick={() => dispatch(toggalAmount({ type: false, id }))}
-            className="bg-[var(--primary)] px-[10px] py-[3px]  font-bold rounded-[100%] text-[#fff]"
+            className="bg-[var(--primary)] px-[12px] py-[3px]  font-bold rounded-[100%] text-[#fff]"
           >
-            --
+            -
           </button>
           <p className="font-semibold text-[17px] text-[#3d3d3d] leading-[59%]">
             {count}
@@ -78,13 +77,16 @@ export const CartCard = ({
                 ).toFixed(2)
               : numericPrice * count}
           </p>
-          <div className="w-[20px] h-[20px]">
+          <button
+            onClick={() => dispatch(deleteProductCart({ id }))}
+            className="w-[20px] h-[20px]"
+          >
             <img
               className="w-full h-full object-cover"
               src={KarzinkaIcon.src}
               alt=""
             />
-          </div>
+          </button>
         </div>
       </div>
     </div>
