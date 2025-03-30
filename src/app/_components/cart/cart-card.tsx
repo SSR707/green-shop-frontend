@@ -22,12 +22,6 @@ export const CartCard = ({
   const dispatch = useDispatch();
   const numericPrice = Number(price) || 0;
   const numericDiscount = Number(discount) || 0;
-  useEffect(() => {}, []);
-  useEffect(() => {
-    if (count <= 0) {
-      dispatch(deleteProductCart({ id }));
-    }
-  }, [count, id]);
   return (
     <div className="mt-[11px] flex bg-[#fbfbfb] items-center gap-[65px]">
       <div className="flex gap-[14px] items-center">
@@ -52,8 +46,11 @@ export const CartCard = ({
         </p>
         <div className="flex gap-[12px] items-center">
           <button
+            disabled={count === 1 ? true : false}
             onClick={() => dispatch(toggalAmount({ type: false, id }))}
-            className="bg-[var(--primary)] px-[12px] py-[3px]  font-bold rounded-[100%] text-[#fff]"
+            className={` px-[12px] py-[3px]  font-bold rounded-[100%] text-[#fff] ${
+              count === 1 ? "bg-[#98c4a1]" : "bg-[var(--primary)]"
+            }`}
           >
             -
           </button>

@@ -4,11 +4,25 @@ import { Button } from "@/components/ui/button";
 import { CartCard } from "../_components/cart/cart-card";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { IinitialState } from "@/store/reducer/cart-reducer";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
   const { productCount, products, totalPrice } = useSelector(
     (state: RootState) => state.product
   );
+  const { push } = useRouter();
+  const [data, setData] = useState<IinitialState>();
+  const pushOrder = () => {
+    if (data?.productCount)
+      if (data.productCount > 0) {
+        push("/cart/order");
+      }
+  };
+  useEffect(() => {
+    setData({ productCount, products, totalPrice });
+  }, [productCount, products, totalPrice]);
   return (
     <section>
       <div className="container">
@@ -33,7 +47,7 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-            {products.map((item) => (
+            {data?.products.map((item) => (
               <CartCard
                 key={item.id}
                 img={item.picture}
@@ -73,7 +87,7 @@ const Cart = () => {
                 Subtotal
               </p>
               <p className="font-semibold text-[18px] leading-[89%] text-[#3d3d3d]">
-                $2,683.00
+                ${data?.totalPrice ? data?.totalPrice.toFixed(2) : 0}
               </p>
             </div>
             <div className="flex justify-between items-center mt-[15px]">
@@ -89,7 +103,7 @@ const Cart = () => {
                 Shiping
               </p>
               <p className="font-semibold text-[18px] leading-[89%] text-[#3d3d3d]">
-                $16.00
+                ${data?.productCount ? data?.productCount * 4 : 0}
               </p>
             </div>
             <p className="font-normal text-[12px] leading-[133%] text-[var(--primary)] text-end mt-[8px]">
@@ -100,10 +114,11 @@ const Cart = () => {
                 Total
               </p>
               <p className="font-bold text-[20px] leading-[89%] text-[var(--primary)]">
-                $2,683.00
+                ${data?.totalPrice ? data?.totalPrice.toFixed(2) : 0}
               </p>
             </div>
             <Button
+              onClick={pushOrder}
               variant="primary"
               className="font-bold text-[18px] leading-[107%] w-full mt-[29px] py-[14px]"
             >

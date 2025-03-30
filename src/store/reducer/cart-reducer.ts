@@ -1,7 +1,7 @@
 import { ProductToCart } from "@/utils/type/cart-product";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IinitialState {
+export interface IinitialState {
   productCount: number;
   totalPrice: number;
   products: ProductToCart[];
@@ -74,7 +74,8 @@ const CartReducer = createSlice({
     totalPrice: (state) => {
       return {
         ...state,
-        totalPrice: state.products.reduce((a, b) => a + b.userPrice, 0),
+        totalPrice:
+          state.products.reduce((a, b) => a + b.userPrice, 0) 
       };
     },
   },

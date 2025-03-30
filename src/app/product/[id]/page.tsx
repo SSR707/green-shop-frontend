@@ -9,7 +9,7 @@ import LoadingSpinner from "@/components/loading/loading";
 import { ReletedProduct } from "@/app/_components/product-diteil/swipper/swipper";
 import { getProducts } from "@/service/query/getProducts";
 import { getProductsById } from "@/service/query/getProductsById";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { SizeBtn } from "@/app/_components/product-diteil/btn/size-btn";
@@ -18,6 +18,7 @@ import {
   deleteProductCart,
 } from "@/store/reducer/cart-reducer";
 import { RootState } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 const size = ["S", "M", "L", "XL"];
 const Product = () => {
@@ -25,6 +26,7 @@ const Product = () => {
   const CartProduct = useSelector((state: RootState) => state.product.products);
   const [isChekProduct, setIsChekProduct] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const { push } = useRouter();
   const { data: product } = getProductsById(id);
   const { data: products } = getProducts({ page: 1, limit: 15 });
   const [sizeActiveSize, setSizeActiveSize] = useState<string | null>(null);
@@ -46,7 +48,7 @@ const Product = () => {
             sub_size: sizeActiveSize,
             userCount: counter,
             userPrice: parseFloat(product.data.price) * counter,
-          })
+          }),
         );
       } else {
         setChekProductCount(counter <= 0 ? true : false);
@@ -137,10 +139,13 @@ const Product = () => {
                   <div className="mt-[23px] flex gap-[26px] items-center ">
                     <div className="flex gap-[23px] items-center">
                       <button
+                        disabled={counter === 1 ? true : false}
                         onClick={() =>
                           setCounter(counter > 0 ? counter - 1 : counter)
                         }
-                        className="px-[14px] py-[4px] rounded-[31px] text-[#fff] bg-[var(--primary)] text-[28px] font-bold"
+                        className={`px-[14px] py-[4px] rounded-[31px] text-[#fff]  text-[28px] font-bold ${
+                          counter === 1 ? "bg-[#98c4a1]" : "bg-[var(--primary)]"
+                        }`}
                       >
                         ---
                       </button>
@@ -156,6 +161,7 @@ const Product = () => {
                     </div>
                     <div className="flex gap-[10px]">
                       <Button
+                        onClick={AddToCart}
                         variant="primary"
                         className="font-bold uppercase  leading-[143%]"
                       >
