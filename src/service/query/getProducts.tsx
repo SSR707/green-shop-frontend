@@ -21,7 +21,7 @@ export const getProductsFetch = async ({
   const filterParam = query ? encodeURIComponent(JSON.stringify(query)) : "";
 
   const res = await fetch(
-    `http://13.233.2.40:3133/api/v1/product?page=${page}&limit=${limit}${
+    `http://13.201.9.21:3133/api/v1/product?page=${page}&limit=${limit}${
       filterParam ? `&filter=${filterParam}` : ""
     }`
   );

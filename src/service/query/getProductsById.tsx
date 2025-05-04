@@ -6,7 +6,7 @@ const baseUrl = process.env.BASE_URL;
 export const getProductsByIdFetch = async (
   id: string |undefined
 ): Promise<ProductResponseById> => {
-  const res = await fetch(`http://13.233.2.40:3133/api/v1/product/${id}`);
+  const res = await fetch(`http://13.201.9.21:3133/api/v1/product/${id}`);
   if (!res.ok) {
     throw new Error("Error Fatching");
   }
